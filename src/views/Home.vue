@@ -1,7 +1,10 @@
 <template>
   <div class="home">
     <h1>{{ message }}</h1>
-    {{ places }}
+    <div v-for="place in places">
+    {{ place.name }}
+    <hr>
+    </div>
   </div>
 </template>
 
@@ -28,6 +31,7 @@ export default {
       // get data from the api, then show data to user
       axios.get("http://localhost:3000/api/places").then((response) => {
         console.log(response.data);
+        this.places = response.data;
       });
     },
   },
