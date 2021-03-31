@@ -1,6 +1,7 @@
 <template>
   <div class="home">
     <h1>{{ message }}</h1>
+    {{ places }}
   </div>
 </template>
 
@@ -8,14 +9,28 @@
 </style>
 
 <script>
+import axios from "axios";
+
 export default {
   data: function () {
     return {
-      message: "Welcome to Vue.js!",
+      message: "Welcome to Places!",
+      places: [],
     };
   },
-  created: function () {},
-  methods: {},
+  created: function () {
+    console.log("in created");
+    this.placesIndex();
+  },
+  methods: {
+    placesIndex: function () {
+      console.log("in places index");
+      // get data from the api, then show data to user
+      axios.get("http://localhost:3000/api/places").then((response) => {
+        console.log(response.data);
+      });
+    },
+  },
 };
 </script>
 
